@@ -15,15 +15,15 @@ function todo(state = [], action) {
             ]
         case TODO_ADD_ALL:
             return [
-                ...action.todo
+                ...action.todo_list
             ]
         case TODO_DELETE:
             return state.filter(function(task){
-                return task._id !==_id;
+                return task._id !==action._id;
             })
         case TODO_UPDATE_STATE:
             return state.map(function(task){
-                if (task._id ===_id) {
+                if (task._id === action._id) {
                     return {...task, done: !task.done}
                 }
                 return task
@@ -35,4 +35,4 @@ function todo(state = [], action) {
 
 export default combineReducers ({
     tasks: todo
-});
+})
